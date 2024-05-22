@@ -39,7 +39,7 @@ public class PricePlanService {
                     PricePlan::getPlanName, t -> calculateCost(electricityReadings.get(), t))));
   }
 
-  private BigDecimal calculateCost(
+  public BigDecimal calculateCost(
       List<ElectricityReading> electricityReadings, PricePlan pricePlan) {
     BigDecimal average = calculateAverageReading(electricityReadings);
     BigDecimal timeElapsed = calculateTimeElapsed(electricityReadings);
