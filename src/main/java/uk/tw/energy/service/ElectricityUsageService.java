@@ -10,7 +10,6 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ElectricityUsageService {
@@ -35,7 +34,7 @@ public class ElectricityUsageService {
         List<ElectricityReading> lastWeekElectricityReadings = meterReadingService.getReadings(smartMeterId)
                 .orElse(List.of()).stream()
                 .filter(reading -> reading.time().isAfter(startTime) && reading.time().isBefore(endTime))
-                .collect(Collectors.toList());
+                .toList();
 
 
         BigDecimal totalCost = pricePlanService.calculateCost(lastWeekElectricityReadings, smartMetersPricePlan.get());
